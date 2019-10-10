@@ -18,3 +18,6 @@ def adaptive_instance_normalization(content_feat, style_feat):
   normalized_feat = (content_feat - content_mean.expand(size)) / content_std.expand(size)
 
   return normalized_feat * style_std.expand(size) + style_mean.expand(size)
+
+def learning_rate_decay(lr, decay, iteration):
+  return lr / (1.0 + decay, * iteration)
