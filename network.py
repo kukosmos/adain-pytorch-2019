@@ -7,10 +7,10 @@ from utils import adaptive_instance_normalization as adain
 from utils import calc_mean_std
 
 class Encoder(nn.Module):
-  def __init__(self):
+  def __init__(self, pretrained=True):
     super(Encoder, self).__init__()
 
-    vgg = models.vgg19(pretrained=True)
+    vgg = models.vgg19(pretrained=pretrained)
     features = list(vgg.features.children())
 
     self.enc_0 = nn.Sequential(features[:2])
@@ -94,10 +94,10 @@ class Decoder(nn.Module):
     return x
 
 class AdaIN(nn.Module):
-  def __init__(self, training_mode = True):
+  def __init__(self, torchvision_encoder=True, training_mode = True):
     super(AdaIN, self).__init__()
 
-    self.encoder = Encoder()
+    self.encoder = Encoder(pretrained=torchvision_encoder)
     self.decoder = Decoder()
     self.mse_loss = nn.MSELoss()
 
