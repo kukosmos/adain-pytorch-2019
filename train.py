@@ -68,8 +68,8 @@ for i in tqdm(range(args.max_iter)):
   loss.backward()
   optimizer.step()
 
-  writer.add_scalar('loss_content', loss_c.item(), i + 1)
-  writer.add_scalar('loss_style', loss_s.item(), i + 1)
+  writer.add_scalar('loss_content', loss_content.item(), i + 1)
+  writer.add_scalar('loss_style', loss_style.item(), i + 1)
 
   if (i + 1) % args.save_interval == 0 or (i + 1) == args.max_iter:
     model.save(os.path.join(save_dir, 'iter_{}.pth'.format(i + 1)))
