@@ -46,11 +46,38 @@ class Encoder(nn.Module):
     x = self.pad1_2(x)
     x = self.conv1_3(x)
     output_0 = self.relu1_4(x)
+
     x = self.pad1_5(output_0)
     x = self.conv1_6(x)
     x = self.relu1_7(x)
+    x = self.pool2_1(x)
+    x = self.pad2_2(x)
+    x = self.conv2_3(x)
+    output_1 = self.relu2_4(x)
 
+    x = self.pad2_5(output_1)
+    x = self.conv2_6(x)
+    x = self.relu2_7(x)
+    x = self.pool3_1(x)
+    x = self.pad3_2(x)
+    x = self.conv3_3(x)
+    output_2 = self.relu3_4(x)
 
+    x = self.pad3_5(output_2)
+    x = self.conv3_6(x)
+    x = self.conv3_7(x)
+    x = self.pad3_8(x)
+    x = self.conv3_9(x)
+    x = self.relu3_10(x)
+    x = self.pad3_11(x)
+    x = self.conv3_12(x)
+    x = self.relu3_13(x)
+    x = self.pool4_1(x)
+    x = self.pad4_2(x)
+    x = self.conv4_3(x)
+    output_3 = self.relu4_4(x)
+
+    return output_0, output_1, output_2, output_3
 
 class Decoder(nn.Module):
   def __init__(self):
