@@ -131,8 +131,21 @@ class AdaIN(nn.Module):
 
     return g, l_content, l_style
 
-  def save(self):
-    pass
+  def save(self, name='AdaIN.pth', include_encoder=False):
+    state_dict = {}
+
+    if include_encoder:
+      encoder_dict = self.encoder.state_dict()
+      for key in encoder_dict.keys():
+        encoder_dict[key] = encoder_dict[key].to(torch.device('cpu'))
+      state_dict['encoder'] = encoder_dict
+    
+    decoder_dict = self.decoder.state_dict()
+    for key in decoder_dict.keys():
+      decoder_dict[key] = decoder_dict[key].to(torch.device('cpu'))
+    state_dict['decoder'] = decoder_dict
+    
+    torch.save(state_dict, name)
 
   def load(self):
     pass
