@@ -147,11 +147,42 @@ class Decoder(nn.Module):
     return x
 
 class AdaIN(nn.Module):
-  def __init__(self):
+  def __init__(self, training_mode = True):
     super(AdaIN, self).__init__()
 
-  def forward(self):
-    pass
+    self.encoder = Encoder()
+    self.decoder = Decoder()
+    self.mse_loss = nn.MSELoss()
+
+    self.training_mode = training_mode
+
+    for p in self.encoder.parameters():
+      p.requires_grad = False
+
+  def forward(self, content, style, alpha = 1.0):
+    assert 0 <= alpha <= 1
+
+    f_content = self.encoder(content)[-1]
+    f_style = self.encoder(style)
+    t = adain(f_content, f_style[-1])
+    t = alpha * t + (1 - alpha) * f_content
+
+    g = self.decoder(t)
+
+    if not self.training_mode:
+      return g
+
+    f_g = self.encoder(g)
+
+    l_content = self.mse_loss(f_g, t)
+    
+    l_style = 0
+    for i in range(4):
+      mean_s, std_s = calc_mean_std(f_style[i])
+      mean_g, std_g = calc_mean_std(f_g[i])
+      l_style += self.mse_loss(mean_s, mean_g) + self.mse_loss(std_s, std_g)
+
+    return g, l_content, l_style
 
   def save(self):
     pass
