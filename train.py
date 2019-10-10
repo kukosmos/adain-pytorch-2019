@@ -1,16 +1,6 @@
 assert __name__ == '__main__'
 
 import argparse
-import os
-import torch
-import torch.utils.data as data
-
-from dataloader import ImageFolderDataset, InfiniteSampler, train_transform
-from network import AdaIN
-from pathlib import Path
-from tensorboardX import SummaryWriter
-from tqdm import tqdm
-from utils import learning_rate_decay
 
 parser = argparse.ArgumentParser(description='AdaIN Training Script')
 
@@ -31,6 +21,17 @@ parser.add_argument('--style-weight', type=float, metavar='<float>', default=10.
 parser.add_argument('--content-weight', type=float, metavar='<float>', default=1.0, help='Weight of content loss')
 
 args = parser.parse_args()
+
+import os
+import torch
+import torch.utils.data as data
+
+from dataloader import ImageFolderDataset, InfiniteSampler, train_transform
+from network import AdaIN
+from pathlib import Path
+from tensorboardX import SummaryWriter
+from tqdm import tqdm
+from utils import learning_rate_decay
 
 device = torch.device('cuda' if args.cuda and torch.cuda.is_available() else 'cpu')
 
