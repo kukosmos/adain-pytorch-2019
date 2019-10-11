@@ -48,6 +48,8 @@ def InfiniteSamplerIterator(n):
     i += 1
     if i >= n:
       np.random.seed()
+      order = np.random.permutation(n)
+      i = 0
 
 class InfiniteSampler(data.sampler.Sampler):
   def __init__(self, size):
