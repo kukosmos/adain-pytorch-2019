@@ -37,6 +37,17 @@ Detailed usage of ```download.sh``` script can be found as fallows:
 $ ./download.sh --help
 ```
 
+### Train Model
+Train the model with ```train.py```.
+For example, to train model with ```coco2017train``` as content and ```wikiart``` as style, type in the following command:
+```
+$ python train.py --content-dir data/coco2017train --style-dir data/wikiart
+```
+Advanced options can be found with following command:
+```
+$ python train.py --help
+```
+
 ## Test
 
 ## References
