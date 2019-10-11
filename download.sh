@@ -8,7 +8,7 @@ if [ "$1" = "" -o "$1" = "-h" -o "$1" = "--help" ]; then
   echo "Positional arguments:"
   echo "  <dataset> [<dataset> ...]"
   echo "                        Target dataset to dowload. Supported datasets: coco2014train"
-  echo "                        coco2014test, coco2017train, coco2017test"
+  echo "                        coco2014test, coco2017train, coco2017test, wikiart"
 else
   for var in "$@"; do
     case $var in
@@ -20,6 +20,8 @@ else
       wget -O coco2017train.zip http://images.cocodataset.org/zips/train2017.zip;;
     "coco2017test")
       wget -O coco2017test.zip http://images.cocodataset.org/zips/test2017.zip;;
+    "wikiart")
+      wget -O wikiart.zip http://web.fsktm.um.edu.my/~cschan/source/ICIP2017/wikiart.zip
     *)
       echo "$var not supported";;
     esac
