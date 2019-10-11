@@ -13,11 +13,15 @@ $ git clone https://github.com/kukosmos/AdaIN-pytorch-2019.git
 ```
 
 ## Requirments
-Install following requirments
+Install following applications
+* python3.6+
+* unzip
+
+Install following python libraries
 * Pillow
 * [pytorch](https://pytorch.org)
 * [torchvision](https://pytorch.org)
-* TensorboardX
+* tensorboardX
 * tqdm
 
 ## Train
