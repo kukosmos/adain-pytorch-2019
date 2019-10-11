@@ -22,7 +22,7 @@ def adaptive_instance_normalization(content_feat, style_feat):
   return normalized_feat * style_std.expand(size) + style_mean.expand(size)
 
 def learning_rate_decay(lr, decay, iteration):
-  return lr / (1.0 + decay, * iteration)
+  return lr / (1.0 + decay * iteration)
 
 def calc_flatten_mean_std(feat):
   flatten = feat.view(3, -1)
