@@ -13,10 +13,10 @@ class Encoder(nn.Module):
     vgg = models.vgg19(pretrained=pretrained)
     features = list(vgg.features.children())
 
-    self.enc_0 = nn.Sequential(features[:2])
-    self.enc_1 = nn.Sequential(features[2:7])
-    self.enc_2 = nn.Sequential(features[7:12])
-    self.enc_3 = nn.Sequential(features[12:21])
+    self.enc_0 = nn.Sequential(*features[:2])
+    self.enc_1 = nn.Sequential(*features[2:7])
+    self.enc_2 = nn.Sequential(*features[7:12])
+    self.enc_3 = nn.Sequential(*features[12:21])
 
   def forward(self, x):
     output_0 = self.enc_0(x)
