@@ -7,18 +7,19 @@ parser = argparse.ArgumentParser(description='AdaIN Training Script')
 parser.add_argument('-cd', '--content-dir', type=str, metavar='<dir>', required=True, help='Directory with content images')
 parser.add_argument('-sd', '--style-dir', type=str, metavar='<dir>', required=True, help='Directory with style images')
 
-parser.add_argument('--save-dir', type=str, metavar='<dir>', default='./experiments', help='Directory to save trained models')
-parser.add_argument('--log-dir', type=str, metavar='<dir>', default='./logs', help='Directory to save logs')
-parser.add_argument('--save-interval', type=int, metavar='<int>', default=10000, help='Period for saving model')
+parser.add_argument('--save-dir', type=str, metavar='<dir>', default='./experiments', help='Directory to save trained models, default=./experiments')
+parser.add_argument('--log-dir', type=str, metavar='<dir>', default='./logs', help='Directory to save logs, default=./logs')
+parser.add_argument('--save-interval', type=int, metavar='<int>', default=10000, help='Period for saving model, default=10000')
+parser.add_argument('--include-encoder', action='store_true', help='Option for saving with the encoder')
 parser.add_argument('--cuda', action='store_true', help='Option for using GPU if available')
-parser.add_argument('--n-threads', type=int, metavar='<int>', default=2, help='Number of threads used for dataloader')
+parser.add_argument('--n-threads', type=int, metavar='<int>', default=2, help='Number of threads used for dataloader, default=2')
 
-parser.add_argument('--learning-rate', type=float, metavar='<float>', default=1e-4, help='Learning rate')
-parser.add_argument('--learning-rate-decay', type=float, metavar='<float>', default=5e-5, help='Learning rate decay')
-parser.add_argument('--max-iter', type=int, metavar='<int>', default=160000, help='Maximun number of iteration')
-parser.add_argument('--batch-size', type=int, metavar='<int>', default=8, help='Size of the batch')
-parser.add_argument('--style-weight', type=float, metavar='<float>', default=10.0, help='Weight of style loss')
-parser.add_argument('--content-weight', type=float, metavar='<float>', default=1.0, help='Weight of content loss')
+parser.add_argument('--learning-rate', type=float, metavar='<float>', default=1e-4, help='Learning rate, default=1e-4')
+parser.add_argument('--learning-rate-decay', type=float, metavar='<float>', default=5e-5, help='Learning rate decay, default=5e-5')
+parser.add_argument('--max-iter', type=int, metavar='<int>', default=160000, help='Maximun number of iteration, default=160000')
+parser.add_argument('--batch-size', type=int, metavar='<int>', default=8, help='Size of the batch, default=8')
+parser.add_argument('--style-weight', type=float, metavar='<float>', default=10.0, help='Weight of style loss, default=10.0')
+parser.add_argument('--content-weight', type=float, metavar='<float>', default=1.0, help='Weight of content loss, default=1.0')
 
 args = parser.parse_args()
 
@@ -27,7 +28,7 @@ import torch
 import torch.utils.data as data
 
 from dataloader import ImageFolderDataset, InfiniteSampler, train_transform
-from network import AdaIN
+from network import AdaIN, save_AdaIn
 from pathlib import Path
 from tensorboardX import SummaryWriter
 from tqdm import tqdm
@@ -73,6 +74,6 @@ for i in tqdm(range(args.max_iter)):
   writer.add_scalar('loss_style', loss_style.item(), i + 1)
 
   if (i + 1) % args.save_interval == 0 or (i + 1) == args.max_iter:
-    model.save(os.path.join(save_dir, 'iter_{}.pth'.format(i + 1)))
+    save_AdaIn(model, os.path.join(save_dir, 'iter_{}.pth'.format(i + 1)), include_encoder=args.include_encoder)
 
 writer.close()
