@@ -126,7 +126,7 @@ class AdaIN(nn.Module):
 
     f_g = self.encoder(g)
 
-    l_content = self.mse_loss(f_g, t)
+    l_content = self.mse_loss(f_g[-1], t)
     
     l_style = 0
     for i in range(4):
