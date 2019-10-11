@@ -48,7 +48,7 @@ style_iter = iter(data.DataLoader(style_dataset, batch_size=args.batch_size, sam
 
 model = AdaIN()
 model.to(device)
-optimizer = torch.optim.Adam(model.decoder.parameters(), lr=args.learing_rate)
+optimizer = torch.optim.Adam(model.decoder.parameters(), lr=args.learning_rate)
 
 writer = SummaryWriter(log_dir=str(log_dir))
 
