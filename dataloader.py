@@ -32,7 +32,13 @@ def train_transform(size, crop):
   return transforms.Compose(transform_list)
 
 def test_transform(size, crop):
-  raise NotImplemented
+  transform_list = []
+  if size != 0:
+    transform_list.append(transforms.Resize(size))
+  if crop:
+    transform_list.append(transforms.CenterCrop(size))
+  transform_list.append(transforms.ToTensor())
+  return transforms.Compose(transform_list)
 
 def InfiniteSamplerIterator(n):
   i = n - 1
