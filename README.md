@@ -19,3 +19,24 @@ Install following requirments
 * [torchvision](https://pytorch.org)
 * TensorboardX
 * tqdm
+
+## Train
+
+### Prepare Dataset
+First, download the dataset with given script.
+For example, to download ```coco2017train``` dataset, type in the following command:
+```
+$ ./download.sh coco2017train
+```
+Detailed usage of ```download.sh``` script can be found as fallows:
+```
+$ ./download.sh --help
+```
+
+## Test
+
+## References
+* [1]: X. Huang and S. Belongie. "[Arbitrary Style Transfer in Real-time with Adaptive Instance Normalization](https://arxiv.org/abs/1703.06868)", in ICCV, 2017.
+* [2]: [PyTorch implementation of AdaIN](https://github.com/naoto0804/pytorch-AdaIN)
+* [3]: [COCO Dataset](http://cocodataset.org/#download)
+* [4]: [Wikiart dataset](https://github.com/cs-chan/ArtGAN/tree/master/WikiArt%20Dataset)
