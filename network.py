@@ -94,7 +94,7 @@ class Decoder(nn.Module):
     return x
 
 class AdaIN(nn.Module):
-  def __init__(self, torchvision_encoder=True, training_mode = True):
+  def __init__(self, torchvision_encoder=True, training_mode=True):
     super(AdaIN, self).__init__()
 
     self.encoder = Encoder(pretrained=torchvision_encoder)
@@ -106,12 +106,17 @@ class AdaIN(nn.Module):
     for p in self.encoder.parameters():
       p.requires_grad = False
 
-  def forward(self, content, style, alpha = 1.0):
+  def forward(self, content, style, alpha=1.0, interpolation_weights=None):
     assert 0 <= alpha <= 1
 
     f_content = self.encoder(content)[-1]
     f_style = self.encoder(style)
-    t = adain(f_content, f_style[-1])
+    if interpolation_weights is not None:
+      t = adain(f_content, f_style[-1])
+      t = torch.mm(interpolation_weights, t)
+      f_content = f_content[0:1]
+    else:
+      t = adain(f_content, f_style[-1])
     t = alpha * t + (1 - alpha) * f_content
 
     g = self.decoder(t)
@@ -147,5 +152,12 @@ def save_AdaIn(model, path='AdaIN.pth', include_encoder=False):
   
   torch.save(state_dict, path)
 
-def load_AdaIN(path='AdaIN.pth'):
-  return AdaIN()
+def load_AdaIN(path='AdaIN.pth', training_mode=False):
+  state_dict = torch.load(path)
+  model = AdaIN(torchvision_encoder=('encoder' not in state_dict.keys()), training_mode=training_mode)
+  try:
+    model.encoder.load_state_dict(state_dict['encoder'])
+  except KeyError:
+    pass
+  model.decoder.load_state_dict(state_dict['decoder'])
+  return model
