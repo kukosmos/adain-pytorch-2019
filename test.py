@@ -21,8 +21,9 @@ parser.add_argument('--ext', type=str, metavar='<ext>', default='.jpg', help='Ex
 parser.add_argument('--output', type=str, metavar='<dir>', default='./results', help='Directory for saving created images, default=./results')
 
 parser.add_argument('--alpha', type=float, metavar='<float>', default=1.0, help='Option for degree of stylization, should be between 0 and 1, default=1.0')
-parser.add_argument('--preserve-color', action='store_true', help='Option for preserving color of created images')
-parser.add_argument('--interpolation-weights', type=int, metavar='<int>', nargs='+', help='Weights of style images for interpolation')
+advanced_group = parser.add_mutually_exclusive_group()
+advanced_group.add_argument('--preserve-color', action='store_true', help='Option for preserving color of created images')
+advanced_group.add_argument('--interpolation-weights', type=int, metavar='<int>', nargs='+', help='Weights of style images for interpolation')
 
 args = parser.parse_args()
 
@@ -33,6 +34,7 @@ from network import load_AdaIN
 from pathlib import Path
 from PIL import Image
 from torchvision.utils import save_image
+from utils import color_control
 
 device = torch.device('cuda' if args.cuda and torch.cuda.is_avaiable() else 'cpu')
 
@@ -83,7 +85,7 @@ for content_path in contents:
       content = content_transform(Image.open(str(content_path))).to(device)
       style = style_transform(Image.open(str(style_path))).to(device)
       if args.preserve_color:
-        pass
+        style = color_control(style, content)
       content = content.to(device).unsqueeze(0)
       style = style.to(device).unsqueeze(0)
       
