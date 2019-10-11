@@ -9,7 +9,7 @@ class ImageFolderDataset(data.Dataset):
   def __init__(self, folder, transform):
     super(ImageFolderDataset, self).__init__()
     self.folder = folder
-    self.images = list(Path(self.folder).glob('*'))
+    self.images = list(Path(self.folder).glob('**/*.*'))
     self.transform = transform
 
   def __getitem__(self, index):
