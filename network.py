@@ -107,7 +107,7 @@ class AdaIN(nn.Module):
       p.requires_grad = False
 
   def forward(self, content, style, alpha=1.0, interpolation_weights=None):
-    assert 0 <= alpha <= 1
+    assert 0 <= alpha <= 1, '"alpha" should be between 0 and 1'
 
     f_content = self.encoder(content)[-1]
     f_style = self.encoder(style)

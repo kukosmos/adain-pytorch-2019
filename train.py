@@ -1,4 +1,4 @@
-assert __name__ == '__main__'
+assert __name__ == '__main__', 'This file cannot be imported'
 
 import argparse
 
