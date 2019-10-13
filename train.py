@@ -30,9 +30,13 @@ import torch.utils.data as data
 from dataloader import ImageFolderDataset, InfiniteSampler, train_transform
 from network import AdaIN, save_AdaIn
 from pathlib import Path
+from PIL import Image, ImageFile
 from tensorboardX import SummaryWriter
 from tqdm import tqdm
 from utils import learning_rate_decay
+
+Image.MAX_IMAGE_PIXELS = None
+ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 device = torch.device('cuda' if args.cuda and torch.cuda.is_available() else 'cpu')
 
