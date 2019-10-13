@@ -48,7 +48,24 @@ Advanced options can be found with following command:
 $ python train.py --help
 ```
 
-## Test
+## Generate Results
+Generate sytled images with ```test.py```.
+For example, to generate a styled image from trained model ```models/adain.pth``` with ```images/content.jpg``` as a content image
+and ```images/style.jpg``` as a style image, type in the following command:
+```
+$ python test.py --model models/adain.pth --content images/content.jpg --style images/style.jpg
+```
+
+### Interpolation
+To mix the two or more styles in one content image, specify the interpolation weights as follows:
+```
+$ python test.py --model models/adain.pth --content images/content.jpg --style images/style1.jpg images/style2.jpg images/style3.jpg --interpolation-weights 2 3 4
+```
+
+More options can be found with following command:
+```
+$ python test.py --help
+```
 
 ## References
 * [1]: X. Huang and S. Belongie. "[Arbitrary Style Transfer in Real-time with Adaptive Instance Normalization](https://arxiv.org/abs/1703.06868)", in ICCV, 2017.
