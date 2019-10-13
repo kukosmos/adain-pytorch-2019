@@ -72,7 +72,7 @@ model.to(device)
 for content_path in contents:
   if interpolation:
     style = torch.stack([style_transform(Image.open(str(p))) for p in styles]).to(device)
-    content = content_transform(Image.open(str(content_path))).expand_as(style).to(device)
+    content = content_transform(Image.open(str(content_path))).unsqueeze(0).to(device)
 
     with torch.no_grad():
       output = model(content, style, interpolation_weights=interpolation_weights)

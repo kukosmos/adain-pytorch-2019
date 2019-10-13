@@ -111,9 +111,8 @@ class AdaIN(nn.Module):
     f_content = self.encoder(content)[-1]
     f_style = self.encoder(style)
     if interpolation_weights is not None:
-      t = adain(f_content, f_style[-1])
+      t = adain(f_content.expand_as(f_style), f_style[-1])
       t = torch.mm(interpolation_weights, t)
-      f_content = f_content[0:1]
     else:
       t = adain(f_content, f_style[-1])
     t = alpha * t + (1 - alpha) * f_content
