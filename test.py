@@ -7,7 +7,7 @@ parser = argparse.ArgumentParser(description='AdaIN Testing Script')
 # necessary arguments
 # content images or folder that contains content images, mutually exclusive
 content_group = parser.add_mutually_exclusive_group(required=True)
-content_group.add_argument('-c', '--content', type=str, metavar='<file>', nargs='+' help='Content image(s)')
+content_group.add_argument('-c', '--content', type=str, metavar='<file>', nargs='+', help='Content image(s)')
 content_group.add_argument('-cd', '--content-dir', type=str, metavar='<dir>', help='Directory with content images')
 # style images or folder that contains style images, mutually exclusive
 style_group = parser.add_mutually_exclusive_group(required=True)
