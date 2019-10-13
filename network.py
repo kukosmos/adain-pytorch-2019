@@ -13,10 +13,12 @@ class Encoder(nn.Module):
     vgg = models.vgg19(pretrained=pretrained)
     features = list(vgg.features.children())
 
+    # use 4 steps to encode the image
     self.enc_0 = nn.Sequential(*features[:2])
     self.enc_1 = nn.Sequential(*features[2:7])
     self.enc_2 = nn.Sequential(*features[7:12])
     self.enc_3 = nn.Sequential(*features[12:21])
+    self.encoding_step = 4
 
   # use four internal feature vectors of encoder
   def forward(self, x):
@@ -142,7 +144,7 @@ class AdaIN(nn.Module):
     
     # calculate style loss
     l_style = 0
-    for i in range(4):
+    for i in range(self.encoder.encoding_step):
       mean_s, std_s = calc_mean_std(f_style[i])
       mean_g, std_g = calc_mean_std(f_g[i])
       l_style += self.mse_loss(mean_s, mean_g) + self.mse_loss(std_s, std_g)
