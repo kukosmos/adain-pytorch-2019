@@ -11,6 +11,7 @@ def calc_mean_std(feat, eps=1e-5):
 
   return feat_mean, feat_std
 
+# presented in "Arbitrary Style Transfer in Real-time with Adaptive Instance Normalization, https://arxiv.org/abs/1703.06868"
 def adaptive_instance_normalization(content_feat, style_feat):
   size = content_feat.size()
   
@@ -34,6 +35,7 @@ def matrix_sqrt(mat):
   U, D, V = torch.svd(mat)
   return torch.mm(torch.mm(U, D.pow(0.5).diag()), V.t())
 
+# presented in "Controlling Perceptual Factors in Neural Style Transfer, https://arxiv.org/abs/1611.07865"
 def color_control(original, target):
   flatten_o, mean_o, std_o = calc_flatten_mean_std(original)
   normalized_o = (flatten_o - mean_o.expand_as(flatten_o)) / std_o.expand_as(flatten_o)
