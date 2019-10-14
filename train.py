@@ -92,7 +92,7 @@ for i in tqdm(range(args.max_iter)):
   writer.add_scalar('Loss/Loss', loss.item(), i + 1)
   writer.add_scalar('Loss/Loss_content', loss_content.item(), i + 1)
   writer.add_scalar('Loss/Loss_style', loss_style.item(), i + 1)
-  if args.log_image_every > 0 and (i + 1) % args.log_image_every == 0 or i == 0 or (i + 1) == args.max_iter:
+  if args.log_image_every > 0 and ((i + 1) % args.log_image_every == 0 or i == 0 or (i + 1) == args.max_iter):
     writer.add_image('Image/Content', content_images[0], i + 1)
     writer.add_image('Image/Style', style_images[0], i + 1)
     writer.add_image('Image/Generated', g[0], i + 1)
