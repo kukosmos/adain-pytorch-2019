@@ -90,8 +90,9 @@ for i in tqdm(range(args.max_iter)):
   optimizer.step()
 
   # write logs
-  writer.add_scalar('loss_content', loss_content.item(), i + 1)
-  writer.add_scalar('loss_style', loss_style.item(), i + 1)
+  writer.add_scalar('Loss/Loss', loss.item(), i)
+  writer.add_scalar('Loss/Loss_content', loss_content.item(), i)
+  writer.add_scalar('Loss/Loss_style', loss_style.item(), i)
 
   # save model
   if (i + 1) % args.save_interval == 0 or (i + 1) == args.max_iter:
