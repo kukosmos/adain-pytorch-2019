@@ -84,6 +84,8 @@ model.to(device)
 for content_path in contents:
   # if interpolation weights are presented
   if interpolation:
+    print('Content: {}, Style: interpolation'.format(content_path))
+
     # get style images and stack up style images as a batch
     style = torch.stack([style_transform(Image.open(str(p))) for p in styles]).to(device)
     # get a content image
@@ -101,6 +103,8 @@ for content_path in contents:
   else:
     # for all style images
     for style_path in styles:
+      print('Content: {}, Style: {}'.format(content_path, style_path))
+
       # get a single content image
       content = content_transform(Image.open(str(content_path))).to(device)
       content = content.to(device).unsqueeze(0)
