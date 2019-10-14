@@ -121,6 +121,7 @@ class AdaIN(nn.Module):
     f_content = self.encoder(content)[-1]
     f_style = self.encoder(style)
     if interpolation_weights is not None:
+      assert not self.training_mode, 'Interpolation is only avaialble for testing'
       # mix the features of style images with interpolation weights
       t = adain(f_content.expand_as(f_style[-1]), f_style[-1])
       t = torch.mm(interpolation_weights, t)
