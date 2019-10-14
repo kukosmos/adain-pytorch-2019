@@ -6,9 +6,9 @@ from utils import adaptive_instance_normalization as adain
 from utils import calc_mean_std
 
 # encoder using vgg19 structure
-class Encoder(nn.Module):
+class VGGEncoder(nn.Module):
   def __init__(self, pretrained=True):
-    super(Encoder, self).__init__()
+    super(VGGEncoder, self).__init__()
 
     vgg = models.vgg19(pretrained=pretrained)
     features = list(vgg.features.children())
@@ -102,7 +102,7 @@ class AdaIN(nn.Module):
   def __init__(self, torchvision_encoder=True, training_mode=True):
     super(AdaIN, self).__init__()
 
-    self.encoder = Encoder(pretrained=torchvision_encoder)
+    self.encoder = VGGEncoder(pretrained=torchvision_encoder)
     self.decoder = Decoder()
     self.mse_loss = nn.MSELoss()
 
