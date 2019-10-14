@@ -25,8 +25,9 @@ Install following python libraries
 * tqdm
 
 ## Train
+To train a model, do the following steps.
 
-### Prepare Dataset
+### Prepare dataset
 First, download the dataset with given script.
 For example, to download ```coco2017train``` dataset, type in the following command:
 ```
@@ -37,19 +38,21 @@ Detailed usage of ```download.sh``` script can be found as fallows:
 $ ./download.sh --help
 ```
 
-### Train Model
+### Train model
 Train the model with ```train.py```.
 For example, to train model with ```coco2017train``` as content and ```wikiart``` as style, type in the following command:
 ```
 $ python train.py --content-dir data/coco2017train --style-dir data/wikiart
 ```
+
+### For more
 Advanced options can be found with following command:
 ```
 $ python train.py --help
 ```
 
 ## Generate Results
-Generate sytled images with ```test.py```.
+To generate sytled images, use ```test.py```.
 For example, to generate a styled image from trained model ```models/adain.pth``` with ```images/content.jpg``` as a content image
 and ```images/style.jpg``` as a style image, type in the following command:
 ```
@@ -61,7 +64,10 @@ To mix the two or more styles in one content image, specify the interpolation we
 ```
 $ python test.py --model models/adain.pth --content images/content.jpg --style images/style1.jpg images/style2.jpg images/style3.jpg --interpolation-weights 2 3 4
 ```
+Note that all style images should have weights.
+In other words, the number of images should be equal to the number of weights.
 
+### For more
 More options can be found with following command:
 ```
 $ python test.py --help
