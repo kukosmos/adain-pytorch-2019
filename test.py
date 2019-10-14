@@ -106,8 +106,8 @@ for content_path in contents:
       print('Content: {}, Style: {}'.format(content_path, style_path))
 
       # get a single content image
-      content = content_transform(Image.open(str(content_path))).to(device)
-      content = content.to(device).unsqueeze(0)
+      content = content_transform(Image.open(str(content_path)))
+      content = content.unsqueeze(0).to(device)
 
       # get a single style image
       style = style_transform(Image.open(str(style_path))).to(device)
