@@ -46,6 +46,11 @@ For example, to train model with ```coco2017train``` as content and ```wikiart``
 $ python train.py --content-dir data/coco2017train --style-dir data/wikiart
 ```
 
+To check the logs that saved in ```logs``` directory, type in the following command:
+```
+$ tensorboard --logdir logs
+```
+
 ### For more
 Advanced options can be found with following command:
 ```
