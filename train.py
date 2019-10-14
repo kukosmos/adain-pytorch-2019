@@ -81,9 +81,7 @@ for i in tqdm(range(args.max_iter)):
 
   # calculate loss
   g, loss_content, loss_style = model(content_images, style_images)
-  loss_content = args.content_weight * loss_content
-  loss_style = args.style_weight * loss_style
-  loss = loss_content + loss_style
+  loss = args.content_weight * loss_content + args.style_weight * loss_style
 
   # optimize the network
   optimizer.zero_grad()  
