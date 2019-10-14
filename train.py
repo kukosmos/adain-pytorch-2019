@@ -11,6 +11,7 @@ parser.add_argument('-sd', '--style-dir', type=str, metavar='<dir>', required=Tr
 # optional arguments for training
 parser.add_argument('--save-dir', type=str, metavar='<dir>', default='./experiments', help='Directory to save trained models, default=./experiments')
 parser.add_argument('--log-dir', type=str, metavar='<dir>', default='./logs', help='Directory to save logs, default=./logs')
+parser.add_argument('--log-image-every', type=int, metavar='<int>', default=100, help='Period for loging generated images, non-positive for disabling, default=100')
 parser.add_argument('--save-interval', type=int, metavar='<int>', default=10000, help='Period for saving model, default=10000')
 parser.add_argument('--include-encoder', action='store_true', help='Option for saving with the encoder')
 parser.add_argument('--cuda', action='store_true', help='Option for using GPU if available')
@@ -79,7 +80,7 @@ for i in tqdm(range(args.max_iter)):
   style_images = next(style_iter).to(device)
 
   # calculate loss
-  _, loss_content, loss_style = model(content_images, style_images)
+  g, loss_content, loss_style = model(content_images, style_images)
   loss_content = args.content_weight * loss_content
   loss_style = args.style_weight * loss_style
   loss = loss_content + loss_style
@@ -93,6 +94,10 @@ for i in tqdm(range(args.max_iter)):
   writer.add_scalar('Loss/Loss', loss.item(), i + 1)
   writer.add_scalar('Loss/Loss_content', loss_content.item(), i + 1)
   writer.add_scalar('Loss/Loss_style', loss_style.item(), i + 1)
+  if args.log_image_every > 0 and (i + 1) % args.log_image_every == 0 or i == 0 or (i + 1) == args.max_iter:
+    writer.add_image('Image/Content', content_images[0], i + 1)
+    writer.add_image('Image/Style', style_images[0], i + 1)
+    writer.add_image('Image/Generated', g[0], i + 1)
 
   # save model
   if (i + 1) % args.save_interval == 0 or (i + 1) == args.max_iter:
