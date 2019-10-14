@@ -122,7 +122,7 @@ class AdaIN(nn.Module):
     f_style = self.encoder(style)
     if interpolation_weights is not None:
       # mix the features of style images with interpolation weights
-      t = adain(f_content.expand_as(f_style), f_style[-1])
+      t = adain(f_content.expand_as(f_style[-1]), f_style[-1])
       t = torch.mm(interpolation_weights, t)
     else:
       t = adain(f_content, f_style[-1])
