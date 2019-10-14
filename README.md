@@ -21,6 +21,7 @@ Install following python libraries
 * Pillow
 * [pytorch](https://pytorch.org)
 * [torchvision](https://pytorch.org)
+* tensorboard
 * tensorboardX
 * tqdm
 
