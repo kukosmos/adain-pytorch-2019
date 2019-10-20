@@ -21,7 +21,7 @@ parser.add_argument('--content-size', type=int, metavar='<int>', default=512, he
 parser.add_argument('--style-size', type=int, metavar='<int>', default=512, help='Size for resizing style images, 0 for keeping original size, default=512')
 parser.add_argument('--crop', action='store_true', help='Option for central crop')
 parser.add_argument('--ext', type=str, metavar='<ext>', default='.jpg', help='Extension name of the created images, default=.jpg')
-parser.add_argument('--output', type=str, metavar='<dir>', default='./results', help='Directory for saving created images, default=./results')
+parser.add_argument('--output', type=str, metavar='<dir>', default='./generated', help='Directory for saving created images, default=./generated')
 
 # advanced options
 parser.add_argument('--alpha', type=float, metavar='<float>', default=1.0, help='Option for degree of stylization, should be between 0 and 1, default=1.0')
