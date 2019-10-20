@@ -4,6 +4,9 @@ data/*
 # logs
 logs/*
 
+# generated images
+generated/*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
