@@ -81,10 +81,13 @@ model = load_AdaIN(args.model, training_mode=False)
 model.to(device)
 
 # for all content images
+total = len(contents) * (1 if interpolation else len(styles))
+it = 0
 for content_path in contents:
   # if interpolation weights are presented
   if interpolation:
-    print('Content: {}, Style: interpolation'.format(content_path))
+    it += 1
+    print('[{}/{}] Content: {}, Style: interpolation'.format(it, total, content_path))
 
     # get style images and stack up style images as a batch
     style = torch.stack([style_transform(Image.open(str(p))) for p in styles]).to(device)
@@ -103,7 +106,8 @@ for content_path in contents:
   else:
     # for all style images
     for style_path in styles:
-      print('Content: {}, Style: {}'.format(content_path, style_path))
+      it += 1
+      print('[{}/{}] Content: {}, Style: {}'.format(it, total, content_path, style_path))
 
       # get a single content image
       content = content_transform(Image.open(str(content_path)))
