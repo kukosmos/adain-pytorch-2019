@@ -52,14 +52,14 @@ if args.content:
   contents = [Path(c) for c in args.content]
 else:
   content_dir = Path(args.content_dir)
-  contents = list(content_dir.glob('*'))
+  contents = list(content_dir.glob('**/*.*'))
 
 # path to style images
 if args.style:
   styles = [Path(s) for s in args.style]
 else:
   style_dir = Path(args.style_dir)
-  styles = list(style_dir.glob('*'))
+  styles = list(style_dir.glob('**/*.*'))
 
 # if interpolation weights are presented, mix the styles with weights
 if args.interpolation_weights:
