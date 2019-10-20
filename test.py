@@ -19,7 +19,7 @@ parser.add_argument('-m', '--model', type=str, required=True, metavar='<pth>', h
 parser.add_argument('--cuda', action='store_true', help='Option for using GPU if available')
 parser.add_argument('--content-size', type=int, metavar='<int>', default=512, help='Size for resizing content images, 0 for keeping original size, default=512')
 parser.add_argument('--style-size', type=int, metavar='<int>', default=512, help='Size for resizing style images, 0 for keeping original size, default=512')
-parser.add_argument('--crop', action='store_true', help='Option for central crop')
+parser.add_argument('--crop', action='store_true', help='Option for central crop, when using interpolation automatically set to true')
 parser.add_argument('--ext', type=str, metavar='<ext>', default='.jpg', help='Extension name of the created images, default=.jpg')
 parser.add_argument('--output', type=str, metavar='<dir>', default='./generated', help='Directory for saving created images, default=./generated')
 
@@ -68,13 +68,13 @@ if args.interpolation_weights:
   sum_weights = sum(args.interpolation_weights)
   interpolation_weights = [w / sum_weights for w in args.interpolation_weights]
   interpolation_weights = torch.tensor(interpolation_weights)
-  interpolation_weights = interpolation_weights.unsqueeze(0).to(device)
+  interpolation_weights = interpolation_weights.to(device)
 else:
   interpolation = False
 
 # data handle helper
-content_transform = test_transform(args.content_size, args.crop)
-style_transform = test_transform(args.style_size, args.crop)
+content_transform = test_transform(args.content_size, args.crop or interpolation)
+style_transform = test_transform(args.style_size, args.crop or interpolation)
 
 # import trained model
 model = load_AdaIN(args.model, training_mode=False)

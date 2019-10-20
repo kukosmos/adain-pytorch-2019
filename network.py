@@ -124,7 +124,11 @@ class AdaIN(nn.Module):
       assert not self.training_mode, 'Interpolation is only avaialble for testing'
       # mix the features of style images with interpolation weights
       t = adain(f_content.expand_as(f_style[-1]), f_style[-1])
-      t = torch.mm(interpolation_weights, t)
+      orig_shape = t.shape
+      t = torch.reshape(t, (t.shape[0], -1))
+      interpolation_weights = interpolation_weights.unsqueeze(1).expand_as(t)
+      t = torch.reshape(t * interpolation_weights, orig_shape)
+      t = torch.sum(t, dim=0, keepdim=True)
     else:
       t = adain(f_content, f_style[-1])
     # adjust amount of stylization with alpha
