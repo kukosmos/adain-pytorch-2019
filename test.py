@@ -1,4 +1,4 @@
-assert __name__ == '__main__', 'This file cannot be imported'
+assert __name__ == '__main__', 'This file cannot be imported.'
 
 import argparse
 
@@ -65,7 +65,7 @@ assert len(styles) > 0, 'No style image is provided. Please check the options fo
 
 # if interpolation weights are presented, mix the styles with weights
 if args.interpolation_weights:
-  assert len(styles) == len(args.interpolation_weights), 'All style images should be weighted, {} images are given while {} weights are given'.format(len(styles), len(args.interpolation_weights))
+  assert len(styles) == len(args.interpolation_weights), 'All style images should be weighted. {} images are given while {} weights are given.'.format(len(styles), len(args.interpolation_weights))
   interpolation = True
   sum_weights = sum(args.interpolation_weights)
   interpolation_weights = [w / sum_weights for w in args.interpolation_weights]
