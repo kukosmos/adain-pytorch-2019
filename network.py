@@ -114,14 +114,14 @@ class AdaIN(nn.Module):
       p.requires_grad = False
 
   def forward(self, content, style, alpha=1.0, interpolation_weights=None):
-    assert 0 <= alpha <= 1, '"alpha" should be between 0 and 1'
-    assert interpolation_weights is None or not self.training_mode, 'Interpolation is not supported while training'
+    assert 0 <= alpha <= 1, '"alpha" should be between 0 and 1.'
+    assert interpolation_weights is None or not self.training_mode, 'Interpolation is not supported while training.'
 
     # get the features from the content image and the style image
     f_content = self.encoder(content)[-1]
     f_style = self.encoder(style)
     if interpolation_weights is not None:
-      assert not self.training_mode, 'Interpolation is only avaialble for testing'
+      assert not self.training_mode, 'Interpolation is only avaialble for testing.'
       # mix the features of style images with interpolation weights
       t = adain(f_content.expand_as(f_style[-1]), f_style[-1])
       orig_shape = t.shape

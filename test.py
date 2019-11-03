@@ -1,4 +1,4 @@
-assert __name__ == '__main__', 'This file cannot be imported'
+assert __name__ == '__main__', 'This file cannot be imported.'
 
 import argparse
 
@@ -53,6 +53,7 @@ if args.content:
 else:
   content_dir = Path(args.content_dir)
   contents = list(content_dir.glob('**/*.*'))
+assert len(contents) > 0, 'No content image is provided. Please check the options for contents.'
 
 # path to style images
 if args.style:
@@ -60,10 +61,11 @@ if args.style:
 else:
   style_dir = Path(args.style_dir)
   styles = list(style_dir.glob('**/*.*'))
+assert len(styles) > 0, 'No style image is provided. Please check the options for styles.'
 
 # if interpolation weights are presented, mix the styles with weights
 if args.interpolation_weights:
-  assert len(styles) == len(args.interpolation_weights), 'All style images should be weighted, {} images are given while {} weights are given'.format(len(styles), len(args.interpolation_weights))
+  assert len(styles) == len(args.interpolation_weights), 'All style images should be weighted. {} images are given while {} weights are given.'.format(len(styles), len(args.interpolation_weights))
   interpolation = True
   sum_weights = sum(args.interpolation_weights)
   interpolation_weights = [w / sum_weights for w in args.interpolation_weights]
