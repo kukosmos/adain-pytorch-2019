@@ -4,11 +4,13 @@ Original implementation can be found at [here](https://github.com/xunhuang1995/A
 
 ## Examples
 These are the content image and style image to create the examples.
+
 |             Content            |            Style           |
 |:------------------------------:|:--------------------------:|
 | ![content](images/content.jpg) | ![style](images/style.jpg) |
 
 These are generated images with this implementation.
+
 |           iter_10K           |           iter_20K           |           iter_30K           |           iter_40K           |
 |:----------------------------:|:----------------------------:|:----------------------------:|:----------------------------:|
 | ![10K](images/iter_10K.jpg)  | ![10K](images/iter_20K.jpg)  | ![10K](images/iter_30K.jpg)  | ![10K](images/iter_40K.jpg)  |
