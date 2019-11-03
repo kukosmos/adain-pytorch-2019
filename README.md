@@ -2,6 +2,29 @@
 PyTorch implementation of [this paper](https://arxiv.org/abs/1703.06868).
 Original implementation can be found at [here](https://github.com/xunhuang1995/AdaIN-style).
 
+## Examples
+These are the content image and style image to create the examples.
+|             Content            |            Style           |
+|:------------------------------:|:--------------------------:|
+| ![content](images/content.jpg) | ![style](images/style.jpg) |
+
+These are generated images with this implementation.
+|           iter_10K           |           iter_20K           |           iter_30K           |           iter_40K           |
+|:----------------------------:|:----------------------------:|:----------------------------:|:----------------------------:|
+| ![10K](images/iter_10K.jpg)  | ![10K](images/iter_20K.jpg)  | ![10K](images/iter_30K.jpg)  | ![10K](images/iter_40K.jpg)  |
+
+|           iter_50K           |           iter_60K           |           iter_70K           |           iter_80K           |
+|:----------------------------:|:----------------------------:|:----------------------------:|:----------------------------:|
+| ![10K](images/iter_50K.jpg)  | ![10K](images/iter_60K.jpg)  | ![10K](images/iter_70K.jpg)  | ![10K](images/iter_80K.jpg)  |
+
+|           iter_90K           |           iter_100K          |           iter_110K          |           iter_120K          |
+|:----------------------------:|:----------------------------:|:----------------------------:|:----------------------------:|
+| ![10K](images/iter_90K.jpg)  | ![10K](images/iter_100K.jpg) | ![10K](images/iter_110K.jpg) | ![10K](images/iter_120K.jpg) |
+
+|           iter_130K          |           iter_140K          |           iter_150K          |           iter_160K          |
+|:----------------------------:|:----------------------------:|:----------------------------:|:----------------------------:|
+| ![10K](images/iter_130K.jpg) | ![10K](images/iter_140K.jpg) | ![10K](images/iter_150K.jpg) | ![10K](images/iter_160K.jpg) |
+
 ## Clone
 via ssh
 ```
