@@ -75,7 +75,7 @@ Install following python libraries
 * tqdm
 
 ## Train
-To train a model, do the following steps.
+To train a model yourself, do the following steps.
 
 ### Prepare dataset
 First, download the dataset with given script.
@@ -83,7 +83,7 @@ For example, to download ```coco2017train``` dataset, type in the following comm
 ```
 $ ./download.sh coco2017train
 ```
-Detailed usage of ```download.sh``` script can be found as fallows:
+Detailed usage of ```download.sh``` script can be found as follows:
 ```
 $ ./download.sh --help
 ```
@@ -92,7 +92,9 @@ $ ./download.sh --help
 Train the model with ```train.py```.
 For example, to train model with ```coco2017train``` as content and ```wikiart``` as style, type in the following command:
 ```
-$ python train.py --content-dir data/coco2017train --style-dir data/wikiart
+$ python train.py \
+>   --content-dir data/coco2017train \
+>   --style-dir data/wikiart
 ```
 
 To check the logs that saved in ```logs``` directory, type in the following command:
@@ -111,13 +113,20 @@ To generate sytled images, use ```test.py```.
 For example, to generate a styled image from trained model ```models/adain.pth``` with ```images/content.jpg``` as a content image
 and ```images/style.jpg``` as a style image, type in the following command:
 ```
-$ python test.py --model models/adain.pth --content images/content.jpg --style images/style.jpg
+$ python test.py \
+>   --model models/adain.pth \
+>   --content images/content.jpg \
+>   --style images/style.jpg
 ```
 
 ### Interpolation
 To mix the two or more styles in one content image, specify the interpolation weights as follows:
 ```
-$ python test.py --model models/adain.pth --content images/content.jpg --style images/style1.jpg images/style2.jpg images/style3.jpg --interpolation-weights 2 3 4
+$ python test.py \
+>   --model models/adain.pth \
+>   --content images/content.jpg \
+>   --style images/style1.jpg images/style2.jpg images/style3.jpg \
+>   --interpolation-weights 2 3 4
 ```
 Note that all style images should have weights.
 In other words, the number of images should be equal to the number of weights.
