@@ -7,47 +7,47 @@ These are generated images with this implementation.
 
 ### Case 1
 
-|             Content                  |            Style                 |
+|               Content                |              Style               |
 |:------------------------------------:|:--------------------------------:|
 | ![content](images/case1/content.jpg) | ![style](images/case1/style.jpg) |
 
 
-|               iter_10K             |               iter_20K             |                 iter_30K           |                 iter_40K           |
+|              iter_10K              |              iter_20K              |              iter_30K              |              iter_40K              |
 |:----------------------------------:|:----------------------------------:|:----------------------------------:|:----------------------------------:|
 | ![10K](images/case1/iter_10K.jpg)  | ![10K](images/case1/iter_20K.jpg)  | ![10K](images/case1/iter_30K.jpg)  | ![10K](images/case1/iter_40K.jpg)  |
 
-|               iter_50K             |                 iter_60K           |                 iter_70K           |                 iter_80K           |
+|              iter_50K              |              iter_60K              |              iter_70K              |              iter_80K              |
 |:----------------------------------:|:----------------------------------:|:----------------------------------:|:----------------------------------:|
 | ![10K](images/case1/iter_50K.jpg)  | ![10K](images/case1/iter_60K.jpg)  | ![10K](images/case1/iter_70K.jpg)  | ![10K](images/case1/iter_80K.jpg)  |
 
-|               iter_90K             |                 iter_100K          |                 iter_110K          |                 iter_120K          |
+|              iter_90K              |              iter_100K             |              iter_110K             |              iter_120K             |
 |:----------------------------------:|:----------------------------------:|:----------------------------------:|:----------------------------------:|
 | ![10K](images/case1/iter_90K.jpg)  | ![10K](images/case1/iter_100K.jpg) | ![10K](images/case1/iter_110K.jpg) | ![10K](images/case1/iter_120K.jpg) |
 
-|                 iter_130K          |                 iter_140K          |                 iter_150K          |                 iter_160K          |
+|              iter_130K             |              iter_140K             |              iter_150K             |              iter_160K             |
 |:----------------------------------:|:----------------------------------:|:----------------------------------:|:----------------------------------:|
 | ![10K](images/case1/iter_130K.jpg) | ![10K](images/case1/iter_140K.jpg) | ![10K](images/case1/iter_150K.jpg) | ![10K](images/case1/iter_160K.jpg) |
 
 ### Case 2
 
-|             Content                  |            Style                 |
+|               Content                |              Style               |
 |:------------------------------------:|:--------------------------------:|
 | ![content](images/case2/content.jpg) | ![style](images/case2/style.jpg) |
 
 
-|               iter_10K             |               iter_20K             |                 iter_30K           |                 iter_40K           |
+|              iter_10K              |              iter_20K              |              iter_30K              |              iter_40K              |
 |:----------------------------------:|:----------------------------------:|:----------------------------------:|:----------------------------------:|
 | ![10K](images/case2/iter_10K.jpg)  | ![10K](images/case2/iter_20K.jpg)  | ![10K](images/case2/iter_30K.jpg)  | ![10K](images/case2/iter_40K.jpg)  |
 
-|               iter_50K             |                 iter_60K           |                 iter_70K           |                 iter_80K           |
+|              iter_50K              |              iter_60K              |              iter_70K              |              iter_80K              |
 |:----------------------------------:|:----------------------------------:|:----------------------------------:|:----------------------------------:|
 | ![10K](images/case2/iter_50K.jpg)  | ![10K](images/case2/iter_60K.jpg)  | ![10K](images/case2/iter_70K.jpg)  | ![10K](images/case2/iter_80K.jpg)  |
 
-|               iter_90K             |                 iter_100K          |                 iter_110K          |                 iter_120K          |
+|              iter_90K              |              iter_100K             |              iter_110K             |              iter_120K             |
 |:----------------------------------:|:----------------------------------:|:----------------------------------:|:----------------------------------:|
 | ![10K](images/case2/iter_90K.jpg)  | ![10K](images/case2/iter_100K.jpg) | ![10K](images/case2/iter_110K.jpg) | ![10K](images/case2/iter_120K.jpg) |
 
-|                 iter_130K          |                 iter_140K          |                 iter_150K          |                 iter_160K          |
+|              iter_130K             |              iter_140K             |              iter_150K             |              iter_160K             |
 |:----------------------------------:|:----------------------------------:|:----------------------------------:|:----------------------------------:|
 | ![10K](images/case2/iter_130K.jpg) | ![10K](images/case2/iter_140K.jpg) | ![10K](images/case2/iter_150K.jpg) | ![10K](images/case2/iter_160K.jpg) |
 
