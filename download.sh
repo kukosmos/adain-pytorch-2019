@@ -7,7 +7,7 @@ if [ "$1" = "" -o "$1" = "-h" -o "$1" = "--help" ]; then
   echo ""
   echo "Positional arguments:"
   echo "  <dataset> [<dataset> ...]"
-  echo "                        Target dataset to dowload. Supported datasets: coco2014train"
+  echo "                        Target dataset to dowload. Supported datasets: coco2014train,"
   echo "                        coco2014test, coco2017train, coco2017test, wikiart"
 else
   basedir=data
