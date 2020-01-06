@@ -9,6 +9,7 @@ parser.add_argument('-cd', '--content-dir', type=str, metavar='<dir>', required=
 parser.add_argument('-sd', '--style-dir', type=str, metavar='<dir>', required=True, help='Directory with style images')
 
 # optional arguments for training
+parser.add_argument('--continual', type=str, metavar='<.pth>', default=None, help='File to save and load for continual training, default=disabled')
 parser.add_argument('--save-dir', type=str, metavar='<dir>', default='./experiments', help='Directory to save trained models, default=./experiments')
 parser.add_argument('--log-dir', type=str, metavar='<dir>', default='./logs', help='Directory to save logs, default=./logs')
 parser.add_argument('--log-image-every', type=int, metavar='<int>', default=100, help='Period for loging generated images, non-positive for disabling, default=100')
@@ -62,14 +63,25 @@ style_iter = iter(data.DataLoader(style_dataset, batch_size=args.batch_size, sam
 
 # AdaIN model
 model = AdaIN()
-model.to(device)
 optimizer = torch.optim.Adam(model.decoder.parameters(), lr=args.learning_rate)
+
+# continual training
+initial_iter = 0
+if args.continual:
+  if os.path.exists(args.continual):
+    state_dict = torch.load(args.continual)
+    initial_iter = state_dict['iter']
+    model.encoder.load_state_dict(state_dict['encoder'])
+    model.decoder.load_state_dict(state_dict['decoder'])
+    optimizer.load_state_dict(state_dict['optimizer'])
+
 
 # log writer
 writer = SummaryWriter(log_dir=str(log_dir))
 
 # for maximum iteration
-for i in tqdm(range(args.max_iter)):
+model.to(device)
+for i in tqdm(range(initial_iter, args.max_iter)):
   # adjust learning rate
   lr = learning_rate_decay(args.learning_rate, args.learning_rate_decay, i)
   for group in optimizer.param_groups:
@@ -102,5 +114,13 @@ for i in tqdm(range(args.max_iter)):
   # save model
   if (i + 1) % args.save_interval == 0 or (i + 1) == args.max_iter:
     save_AdaIn(model, os.path.join(save_dir, 'iter_{}.pth'.format(i + 1)), include_encoder=args.include_encoder)
+    # continual training
+    if args.continual:
+      torch.save({
+        'iter': i + 1,
+        'encoder': model.encoder.state_dict().cpu(),
+        'decoder': model.decoder.state_dict().cpu(),
+        'optimizer': model.optimizer.state_dict().cpu()
+      }, args.continual)
 
 writer.close()
