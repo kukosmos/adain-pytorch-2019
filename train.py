@@ -116,11 +116,20 @@ for i in tqdm(range(initial_iter, args.max_iter)):
     save_AdaIn(model, os.path.join(save_dir, 'iter_{}.pth'.format(i + 1)), include_encoder=args.include_encoder)
     # continual training
     if args.continual:
+      encoder_dict = model.encoder.state_dict()
+      for key in encoder_dict.keys():
+        encoder_dict[key] = encoder_dict[key].cpu()
+      decoder_dict = model.decoder.state_dict()
+      for key in decoder_dict.keys():
+        decoder_dict[key] = decoder_dict[key].cpu()
+      optimizer_dict = optimizer.state_dict()
+      for key in optimizer_dict.keys():
+        optimizer_dict[key] = optimizer_dict[key].cpu()
       torch.save({
         'iter': i + 1,
-        'encoder': model.encoder.state_dict().cpu(),
-        'decoder': model.decoder.state_dict().cpu(),
-        'optimizer': model.optimizer.state_dict().cpu()
+        'encoder': encoder_dict,
+        'decoder': decoder_dict,
+        'optimizer': optimizer_dict
       }, args.continual)
 
 writer.close()
