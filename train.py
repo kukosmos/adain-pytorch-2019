@@ -123,8 +123,6 @@ for i in tqdm(range(initial_iter, args.max_iter)):
       for key in decoder_dict.keys():
         decoder_dict[key] = decoder_dict[key].cpu()
       optimizer_dict = optimizer.state_dict()
-      for key in optimizer_dict.keys():
-        optimizer_dict[key] = optimizer_dict[key].cpu()
       torch.save({
         'iter': i + 1,
         'encoder': encoder_dict,
