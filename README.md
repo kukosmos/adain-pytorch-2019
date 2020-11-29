@@ -61,6 +61,23 @@ via https
 $ git clone https://github.com/kukosmos/AdaIN-pytorch-2019.git
 ```
 
+## Docker
+We offer a [docker](https://www.docker.com) image.
+If you prefer run this repository locally, please skip this section and follow the instructions from the following section.
+First, build the image.
+```
+$ docker build . --tag adain
+```
+Start a docker container with the created image.
+```
+$ docker run --rm -it -v $(pwd)/experiments:/workspace/experiments -v $(pwd)/data:/workspace/data -u $(id -u):$(id -g) adain
+```
+We provide two commands (`adain-train`, `adain-test`). Please see how to use them with following commands..
+```
+$ adain-train -h
+$ adain-test -h
+```
+
 ## Requirments
 Install following applications
 * python3.6+
