@@ -15,5 +15,6 @@ RUN ln -s /src/test.py /usr/local/bin/adain-test
 
 COPY docker/bash.bashrc /etc/bash.bashrc
 RUN chmod 777 -R /workspace
+ENV XDG_CACHE_HOME=/workspace/.cache
 
 CMD [ "bash" ]
